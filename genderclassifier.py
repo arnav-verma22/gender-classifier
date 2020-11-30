@@ -26,13 +26,18 @@ mv = mv.fit([x['gender']])
 
 colums_to_encoded = ['_unit_state', 'gender', 'link_color', 'sidebar_color']
 
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
 for i in colums_to_encoded:
-    from sklearn.preprocessing import LabelEncoder
-    le = LabelEncoder()
     x[i] = le.fit_transform(x[i])
 
 colums_to_scale = ['_trusted_judgments', 'link_color', 'sidebar_color',
                    'fav_number', 'retweet_count', 'tweet_count']
 
 y = x['gender']
-x.drop(x['gender'])
+x = x.drop(x['gender'])
+
+from sklearn.preprocessing import StandardScaler
+for j in colums_to_scale:
+    sc_X = StandardScaler()
+    [x[j]] = sc_X.fit_transform([x[j]])
