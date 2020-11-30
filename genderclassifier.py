@@ -19,3 +19,9 @@ mv = SimpleImputer(missing_values = 0, strategy = 'mean', axis = 0)
 mv = mv.fit(x[:, 1:3])
 x[:, 1:3] = mv.transform(x[:, 1:3])
 
+colums_to_encoded = ['_unit_state', 'gender', 'link_color', 'sidebar_color']
+
+for i in colums_to_encoded:
+    from sklearn.preprocessing import LabelEncoder
+    le = LabelEncoder()
+    x[i] = le.fit_transform(x[i])
