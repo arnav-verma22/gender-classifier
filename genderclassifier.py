@@ -35,7 +35,7 @@ colums_to_scale = ['_trusted_judgments', 'link_color', 'sidebar_color',
                    'fav_number', 'retweet_count', 'tweet_count']
 
 y = x['gender']
-x = x.drop(x['gender'])
+x = x.drop(columns=x['gender'])
 
 from sklearn.preprocessing import StandardScaler
 for j in colums_to_scale:
