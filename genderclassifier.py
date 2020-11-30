@@ -7,3 +7,15 @@ for i in df.columns:
 
 columns = ['_golden', '_last_judgment_at', 'profile_yn', 'profile_yn:confidence', 'created', 'gender_gold',
            'profile_yn_gold', 'profileimage', 'tweet_coord', 'tweet_created', 'tweet_location', 'user_timezone']
+
+x = df.drop(columns=columns)
+y = df['gender']
+
+for j in x.columns:
+    print(j, x[j].isnull().values.any())
+
+from sklearn.impute import SimpleImputer
+mv = SimpleImputer(missing_values = 0, strategy = 'mean', axis = 0)
+mv = mv.fit(x[:, 1:3])
+x[:, 1:3] = mv.transform(x[:, 1:3])
+
